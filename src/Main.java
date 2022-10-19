@@ -6,6 +6,7 @@ public class Main {
         Automobile automobile4= new Automobile("Kia","Sportage 4-го поколения"  , 2018 , "сборка в Южной Корее", "цвет кузова — красный",  2.4);
         Automobile automobile5= new Automobile("Hyundai", "Avante", 2016,"сборка в Южной Корее", "цвет кузова — оранжевый",  1.6 );
         Automobile automobile6=new Automobile();
+
         automobile1.characteristic();
         automobile2.characteristic();
         automobile3.characteristic();
