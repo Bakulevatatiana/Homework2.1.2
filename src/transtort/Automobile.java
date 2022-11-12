@@ -1,41 +1,49 @@
 package transtort;
 
-import java.time.LocalDate;
 
-public class Automobile {
-    private final String stamp;
-    private final String model;
-    private double engineVolumeInLiters;
-    private String bodyColor;
-    private int productionYear;
-    private final String assemblyCountry;
-    private String gears;
-    private final String bodyType;
-    private String registrationNumber;
-    private final int seatsCount;
-    private boolean summerTypes;
-    private Key key;
-    private Insurance insurance;
-    public Automobile(String bodyType, int seatsCount, Object o){
-        this.bodyType = bodyType;
-        this.seatsCount = seatsCount;
-        stamp="default";
-        model="default";
-        engineVolumeInLiters=1.5;
-        bodyColor="белый";
-        productionYear=200;
-        assemblyCountry="default";
-    }
+public abstract class Automobile extends Transport implements Competing {
+    //*private double engineVolumeInLiters;
+//    private String gears;
+//    private final String bodyType;
+//    private String registrationNumber;
+//    private final int seatsCount;
+//    private boolean summerTypes;
+    //   private Key key;
+    // private Insurance insurance;
+//    public Automobile(String bodyType, int seatsCount, Object o, String stamp,String model,int productionYear,String assemblyCountry){
+//         super(stamp,model,productionYear,assemblyCountry);
+//        this.bodyType = bodyType;
+//        this.seatsCount = seatsCount;
+//        this.engineVolumeInLiters=1.5;
+//    }
     public Automobile(String stamp,
-    String model, int productionYear,String assemblyCountry,String bodyColor,
-    double engineVolumeInLiters, Key key,Insurance insurance){
+                      String model, double engineVolumeInLiters){
 
-        this.stamp=stamp;
-        this.model=model;
-        this.engineVolumeInLiters=engineVolumeInLiters;
-        this.bodyColor=bodyColor;
-        this.productionYear=productionYear;
-        this.assemblyCountry=assemblyCountry;
+        super(stamp,model, engineVolumeInLiters);}
+        @Override
+        public void startMovement(){
+            System.out.printf("Машина  %s %s начал движение", this.getStamp(),this.getModel());
+
+        }
+        @Override
+        public void stopMovement() {
+            System.out.printf("Машина %s %s закончил движение", this.getStamp(), this.getModel());
+        }
+        @Override
+        public void pitStop() {
+            System.out.println("Пит стоп для легковой машины");
+        }
+        @Override
+        public void getBestLapTime(){
+            System.out.println("Лучшее время круга для легковой машины");}
+            @Override
+            public void maximumMovementSpeed(){
+                System.out.println("Максимальная скорость для легковой машины");
+            }
+        }
+
+       /* this.engineVolumeInLiters=engineVolumeInLiters;
+
 this.gears="механика";
 this.registrationNumber="х000хх000";
             this.bodyType="седан";
@@ -51,9 +59,11 @@ if (insurance==null) {this.insurance= new Insurance();
     }
 
 
-    public void characteristic(){
-        System.out.println(stamp+ model+engineVolumeInLiters+bodyColor+productionYear
-        +assemblyCountry);
+
+
+    public void characteristic  (){
+        System.out.println(stamp+ model+productionYear+assemblyCountry+bodyColor+
+        +engineVolumeInLiters);
     }
 
     public double getEngineVolumeInLiters() {
@@ -64,21 +74,10 @@ if (insurance==null) {this.insurance= new Insurance();
         this.engineVolumeInLiters = engineVolumeInLiters;
     }
 
-    public String getBodyColor() {
-        return bodyColor;
+    public Key getKey() {
+        return key;
     }
 
-    public void setBodyColor(String bodyColor) {
-        this.bodyColor = bodyColor;
-    }
-
-    public int getProductionYear() {
-        return productionYear;
-    }
-
-    public void setProductionYear(int productionYear) {
-        this.productionYear = productionYear;
-    }
 
     public String getGears() {
         return gears;
@@ -111,18 +110,6 @@ else {this.registrationNumber=registrationNumber;}}
         this.summerTypes = summerTypes;
     }
 
-    public String getStamp() {
-        return stamp;
-    }
-
-    public String getModel() {
-        return model;
-    }
-
-    public String getAssemblyCountry() {
-        return assemblyCountry;
-    }
-
     public String getBodyType() {
         return bodyType;
     }
@@ -147,6 +134,19 @@ char [] chars=registrationNumber.toCharArray();
         }
         return true;
     }
+    public void refill(){
+        System.out.println("можно заправлять бензином, дизелем на заправке или заряжать на специальных электропарковках, если это электрокар");
+    }
+
+    public Insurance getInsurance() {
+        return insurance;
+    }
+
+    public void setInsurance(Insurance insurance) {
+        this.insurance = insurance;
+    }
+
+
     public static class Key{
         private final boolean remoteRunEngine;
         private final boolean withoutKeyAccess;
@@ -215,6 +215,6 @@ char [] chars=registrationNumber.toCharArray();
                 this.number = number;
             }
 
-        }}
-    }
+        }}*/
+
 
