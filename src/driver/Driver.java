@@ -23,7 +23,7 @@ public abstract class Driver<T extends Transport> {
         System.out.printf("Водитль %s закончил движение", this.fullName);
         this.stopMovement();}
     public void refill(){
-        System.out.printf("Водитль %s заправляет %s %s", this.fullName,this.getStamp(),this.automobile.getModel());}
+        System.out.printf("Водитль %s заправляет %s %s", this.fullName,this.getStamp(),this.getModel());}
 
     public String getFullName() {
         return fullName;
