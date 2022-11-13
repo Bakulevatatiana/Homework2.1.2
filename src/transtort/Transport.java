@@ -87,4 +87,6 @@ public abstract void refill();
     public abstract void getBestLapTime();
 
     public abstract void maximumMovementSpeed();
+    public abstract void printType();
+    public abstract boolean service();
 }

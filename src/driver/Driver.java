@@ -4,13 +4,13 @@ import transtort.Transport;
 
 public abstract class Driver<T extends Transport> {
     private final String fullName;
-    private final String category;
+    private  String category;
     private final int drivingExperience;
     private final T car;
 
     protected Driver(String fullName, String category, int drivingExperience, T car) {
         this.fullName = fullName;
-        this.category = category;
+        setCategory(category);
         this.drivingExperience = drivingExperience;
         this.car = car;
     }
@@ -31,6 +31,12 @@ public abstract class Driver<T extends Transport> {
 
     public String getCategory() {
         return category;
+    }
+    public void setCar(T car){
+        if (car ==null){
+            throw  new IllegalAccessException("Необходимо указать тип прав");//14
+        }
+        this.car= this.car;
     }
 
     public int getDrivingExperience() {

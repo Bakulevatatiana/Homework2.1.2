@@ -3,10 +3,21 @@ package transtort;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class Bus extends Transport implements Competing{
+    private Capasity Capasity;
 
-    public Bus(String stamp, String model, int productionYear, String assemblyCountry, double maximumMovementSpeed) {
+    public Bus(String stamp, String model, int productionYear, String assemblyCountry, double maximumMovementSpeed,Capasity Capasity) {
         super(stamp, model, maximumMovementSpeed);
+        this.Capasity= Capasity;
     }
+
+    public transtort.Capasity getCapasity() {
+        return Capasity;
+    }
+
+    public void setCapasity(transtort.Capasity capasity) {
+        Capasity = capasity;
+    }
+
     @Override
     public void startMovement(){
         System.out.printf("Aвтобус  %s %s начал движение", this.getStamp(),this.getModel());
@@ -29,5 +40,24 @@ public class Bus extends Transport implements Competing{
 
         public void refill() {
             System.out.println("можно заправлять бензином или дизелем на заправке");
+
         }
+    @Override
+    public void printType() {
+        if (Capasity==null){
+            System.out.println("Данных по авто недостаточно");
+        }
+        else {
+            String from=LoadCapacity.getFrom()==null?"":"от"+LoadCapacity.getFrom()+" ";
+            String to=LoadCapacity.getTo()==null?"":"до"+LoadCapacity.getTo();
+            System.out.println("Вместимость автобуса от"+ Capasity.getFrom()+" до "+ Capasity.getTo());}
+
     }
+
+    @Override
+    public boolean service() {
+        System.out.println("Автобус"+ getStamp()+""+getModel()+ "в диагностике не требуется");
+        return true;
+    }
+}
+
