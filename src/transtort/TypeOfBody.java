@@ -1,12 +1,12 @@
 package transtort;
 
 public enum TypeOfBody {
-     SEDAN, HATCHBACK,
+    SEDAN, HATCHBACK,
     COUPE,
-            UNIVERSAL,
-            SUV, CROSSOVER,
-            PICKUP,
-            VAN,
-            MINIVAN
+    UNIVERSAL,
+    SUV, CROSSOVER,
+    PICKUP,
+    VAN,
+    MINIVAN
 
 }

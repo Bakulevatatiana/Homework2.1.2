@@ -6,4 +6,7 @@ public class DriverC extends Driver<Automobile> {
     public DriverC(String fullName, String category, int drivingExperience, Automobile car) {
         super(fullName, category, drivingExperience, car);
     }
+    public void have(){
+        System.out.println( "Имеет категорию С (только грузовые машины)");
+    }
 }

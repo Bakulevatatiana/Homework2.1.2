@@ -1,92 +1,113 @@
 package transtort;
 
-public abstract class Transport {
-    private final   String stamp;
-    private final  String model;
-    /*private final int productionYear;
-    private final String assemblyCountry;*/
-    private  String bodyColor;
-    private  double maximumMovementSpeed;
-    private double engineVolumeInLiters;
+import java.util.ArrayList;
 
-    public  Transport(String stamp, String model, double engineVolumeInLiters) {
-        this.stamp = stamp;
-        this.model = model;
-        /*this.productionYear = productionYear;
-        this.assemblyCountry = assemblyCountry;*/
-        this.engineVolumeInLiters=engineVolumeInLiters;
+public abstract class Transport {
+    private final String stamp;
+    private final String model;
+    private String bodyColor;
+    private double maximumMovementSpeed;
+
+    public double getEngineVolumeInLiters() {
+        return engineVolumeInLiters;
     }
 
-   // public Transport(String stamp, String model, int productionYear, String assemblyCountry, String bodyColor, double maximumMovementSpeed,
-       //              String fuelType) {
-        /*this.stamp =ValidationUtils.validOrDefault(stamp);
-        model="default";
-        //this.stamp = "default";
-        this.model = ValidationUtils.validOrDefault(stamp,default);
-        //productionYear=200;
-        //assemblyCountry="default";
-        this.productionYear = Math.max(productionYear,0);
-        this.assemblyCountry = ValidationUtils.validOrDefault(assemblyCountry,default);
+    private double engineVolumeInLiters;
+    private final List<Driver<?>> drivers = new ArrayList<>();
+    private final List<Mechanic<?>> mechanics = new ArrayList<>();
+    private final List<Sponsor<?>> sponsors = new ArrayList<>();
 
-        setMaximumMovementSpeed  (maximumMovementSpeed);
-        setBodyColor(bodyColor);*/
+    public Transport(String stamp, String model, double engineVolumeInLiters) {
+        if (stamp == null || stamp.isBlank()) {
+            this.stamp = "default";
+        } else {
+            this.stamp = stamp;
+        }
+        if (model == null || model.isBlank()) {
+            this.model = "default";
+        } else {
+            this.model = model;
+        }
+        setEngineVolumeInLiters(engineVolumeInLiters);
+
+    }
 
 
     public abstract void startMovement();
 
     public abstract void stopMovement();
 
-    public String getStamp() {
+    public static String getStamp() {
         return stamp;
     }
 
-    public String getModel() {
+    public static String getModel() {
         return model;
     }
 
-    /*public int getProductionYear() {
-        return productionYear;
+    public void setEngineVolumeInLiters(double engineVolumeInLiters) {
+        if (engineVolumeInLiters <= 0) {
+            this.engineVolumeInLiters = 1.6;
+        } else {
+            this.engineVolumeInLiters = engineVolumeInLiters;
+        }
+
     }
-
-
-
-    public String getAssemblyCountry() {
-        return assemblyCountry;
-    }*/
 
     public String getBodyColor() {
         return bodyColor;
     }
 
     public void setBodyColor(String bodyColor) {
-        if (bodyColor==null){this.bodyColor="белый";}
-        else {
+        if (bodyColor == null) {
+            this.bodyColor = "белый";
+        } else {
 
 
-        this.bodyColor = bodyColor;
-    }}
+            this.bodyColor = bodyColor;
+        }
+    }
 
     public double getMaximumMovementSpeed() {
         return maximumMovementSpeed;
     }
 
-    public void setMaximumMovementSpeed( double maximumMovementSpeed) {
-        if (maximumMovementSpeed==0){this.maximumMovementSpeed=0;}
-        else {
+    public void setMaximumMovementSpeed(double maximumMovementSpeed) {
+        if (maximumMovementSpeed == 0) {
+            this.maximumMovementSpeed = 0;
+        } else {
 
-        this.maximumMovementSpeed = maximumMovementSpeed;
+            this.maximumMovementSpeed = maximumMovementSpeed;
+
+        }
 
     }
 
-}
-public abstract void refill();
-    protected abstract String checkfuelTypeOrDefault (String fuelType);
+    public abstract void refill();
+
+    protected abstract String checkfuelTypeOrDefault(String fuelType);
 
     public abstract void pitStop();
 
     public abstract void getBestLapTime();
 
     public abstract void maximumMovementSpeed();
+
     public abstract void printType();
+
     public abstract boolean service();
+
+    public void addDriver(Driver<?> driver) {//0.11
+        drivers.add(driver);
+    }
+
+    public void addMechanic(Mechanic<?> mechanic) {
+        mechanics.add(mechanic);
+    }
+
+    public void addSponsor(Sponsor sponsor) {
+        sponsors.add(sponsor);
+    }
+
+    public abstract void repair();
 }
