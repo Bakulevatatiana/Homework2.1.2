@@ -1,11 +1,12 @@
 package driver;
 
 
+import transtort.Competing;
 import transtort.Transport;
 
 import java.sql.SQLOutput;
 
-public abstract class Driver<T extends Transport> {
+public abstract class Driver<T extends Transport & Competing> {
     private final String fullName;
     private String category;
     private final int drivingExperience;
@@ -62,7 +63,7 @@ public abstract class Driver<T extends Transport> {
     @Override
     public String toString() {
         return String.format("Bодитель управляет автомобилем %s и будет учавствовать в заезде %s %s",
-                this.fullName, Transport.getStamp(), Transport.getModel());
+                this.fullName, this.car.getStamp(), this.car.getModel(),this.car.getModel());
 
     }
 }
