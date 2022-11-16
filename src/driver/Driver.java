@@ -64,6 +64,5 @@ public abstract class Driver<T extends Transport & Competing> {
     public String toString() {
         return String.format("Bодитель управляет автомобилем %s и будет учавствовать в заезде %s %s",
                 this.fullName, this.car.getStamp(), this.car.getModel(),this.car.getModel());
-
     }
 }
