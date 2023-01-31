@@ -1,9 +1,9 @@
 package driver;
 
-import transtort.Automobile;
+import transtort.Car;
 
-public class DriverB extends Driver<Automobile> {
-    public DriverB(String fullName, String category, int drivingExperience, Automobile car) {
+public class DriverB extends Driver<Car> {
+    public DriverB(String fullName, String category, int drivingExperience, Car car) {
         super(fullName, category, drivingExperience, car);
     }
 

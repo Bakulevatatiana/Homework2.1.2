@@ -8,10 +8,8 @@ public abstract class Train extends Transport {
     private String endingStation;
     private int numberOfWagons;
 
-    public Train(String stamp, String model, int productionYear, String assemblyCountry,
-                 float priceOfTheTrip, double travelTime, String nameOfDepartureStation,
-                 String endingStation, int numberOfWagons, double maximumMovementSpeed) {
-        super(stamp, model, productionYear, assemblyCountry, maximumMovementSpeed);
+    public Train(String brand, String model, int productionYear, String assemblyCountry, String bodyColor, float priceOfTheTrip, double travelTime, String nameOfDepartureStation, String endingStation, int numberOfWagons, double maximumMovementSpeed, double engineVolumeInLiters) {
+        super(brand, model, productionYear, assemblyCountry, bodyColor, maximumMovementSpeed, engineVolumeInLiters);
         setPriceOfTheTrip(priceOfTheTrip);
         setTravelTime(travelTime);
         setNumberOfWagons(numberOfWagons);
@@ -51,13 +49,7 @@ public abstract class Train extends Transport {
 
     @Override
     public String toString() {
-        return "Train{" +
-                "priceOfTheTrip=" + priceOfTheTrip +
-                ", travelTime=" + travelTime +
-                ", nameOfDepartureStation='" + nameOfDepartureStation + '\'' +
-                ", endingStation='" + endingStation + '\'' +
-                ", numberOfWagons=" + numberOfWagons +
-                "} " + super.toString();
+        return "Train{" + "priceOfTheTrip=" + priceOfTheTrip + ", travelTime=" + travelTime + ", nameOfDepartureStation='" + nameOfDepartureStation + '\'' + ", endingStation='" + endingStation + '\'' + ", numberOfWagons=" + numberOfWagons + "} " + super.toString();
     }
 
     public String getEndingStation() {

@@ -1,10 +1,9 @@
 package driver;
 
 
+import transtort.Bus;
 import transtort.Competing;
 import transtort.Transport;
-
-import java.sql.SQLOutput;
 
 public abstract class Driver<T extends Transport & Competing> {
     private final String fullName;
@@ -24,17 +23,19 @@ public abstract class Driver<T extends Transport & Competing> {
 
     public void startMovement() {
         System.out.printf("Водитль %s начал движение", this.fullName);
-        this.startMovement();
+        this.car.startMovement();
 
     }
+
 
     public void stopMovement() {
         System.out.printf("Водитль %s закончил движение", this.fullName);
-        this.stopMovement();
+        this.car.stopMovement();
     }
 
     public void refill() {
-        System.out.printf("Водитль %s заправляет %s %s", this.fullName, Transport.getStamp(), Transport.getModel());
+        System.out.printf("Водитль %s заправляет %s %s", this.fullName, this.car.getBrand(), this.car.getModel());
+
     }
 
     public void haveCategory() {
@@ -50,10 +51,10 @@ public abstract class Driver<T extends Transport & Competing> {
     }
 
     public void setCar(T car) throws IllegalAccessException {
-        if (car == null) {
-            throw new IllegalAccessException("Необходимо указать тип прав");//14
+        if (this.car == null) {
+            throw new IllegalAccessException("Необходимо указать тип прав");
         }
-        this.car = this.car;
+        this.car = car;
     }
 
     public int getDrivingExperience() {
@@ -62,7 +63,10 @@ public abstract class Driver<T extends Transport & Competing> {
 
     @Override
     public String toString() {
-        return String.format("Bодитель управляет автомобилем %s и будет учавствовать в заезде %s %s",
-                this.fullName, this.car.getStamp(), this.car.getModel(),this.car.getModel());
+        return String.format(fullName + ", " +
+                        "стаж вождения:" + drivingExperience + "лет," +
+                        " категория:" + category +
+                        "Bодитель управляет автомобилем %s и будет учавствовать в заезде %s %s",
+                this.fullName, car.getBrand(), car.getModel());
     }
 }

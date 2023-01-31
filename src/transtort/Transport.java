@@ -1,57 +1,77 @@
 package transtort;
 
+import driver.Driver;
+
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.List;
 
 public abstract class Transport {
-    private final String stamp;
+    private final String brand;
     private final String model;
+    private final int productionYear;
+    private String assemblyCountry;
     private String bodyColor;
     private double maximumMovementSpeed;
-
-    public double getEngineVolumeInLiters() {
-        return engineVolumeInLiters;
-    }
-
     private double engineVolumeInLiters;
-    private final List<Driver<?>> drivers = new ArrayList<>();
-    private final List<Mechanic<?>> mechanics = new ArrayList<>();
-    private final List<Sponsor<?>> sponsors = new ArrayList<>();
+    private final ArrayList<Driver> drivers = new ArrayList<>();
+    ;
+    private final ArrayList<Mechanic> mechanics = new ArrayList<>();
+    private final ArrayList<Sponsor> sponsors = new ArrayList<>();
 
-    public Transport(String stamp, String model, double engineVolumeInLiters) {
-        if (stamp == null || stamp.isBlank()) {
-            this.stamp = "default";
-        } else {
-            this.stamp = stamp;
-        }
-        if (model == null || model.isBlank()) {
-            this.model = "default";
-        } else {
-            this.model = model;
-        }
+    public Transport(String brand, String model, int productionYear,
+                     String assemblyCountry, String bodyColor,
+                     double maximumMovementSpeed, double engineVolumeInLiters
+
+    ) {
+        this.brand = ValidationUtils.validOrDefault(brand, "default");
+        this.model = ValidationUtils.validOrDefault(model, "default");
+        this.productionYear = ValidationUtils.validOrDefault(productionYear, 200);
+        this.assemblyCountry = assemblyCountry;
+        this.bodyColor = ValidationUtils.validOrDefault(bodyColor, ",белый");
+        this.maximumMovementSpeed = maximumMovementSpeed;
+
+
         setEngineVolumeInLiters(engineVolumeInLiters);
 
     }
 
+    public abstract void refill();
+
+    protected abstract String checkFuelTypeOrDefault(String fuelType);
 
     public abstract void startMovement();
 
     public abstract void stopMovement();
 
-    public static String getStamp() {
-        return stamp;
+    public String getBrand() {
+        return brand;
     }
 
-    public static String getModel() {
+    public String getModel() {
         return model;
+    }
+
+    public double getEngineVolumeInLiters() {
+        return engineVolumeInLiters;
     }
 
     public void setEngineVolumeInLiters(double engineVolumeInLiters) {
         if (engineVolumeInLiters <= 0) {
-            this.engineVolumeInLiters = 1.6;
+            this.engineVolumeInLiters = 1.5;
         } else {
             this.engineVolumeInLiters = engineVolumeInLiters;
         }
 
+    }
+
+    public int getProductionYear() {
+        return productionYear;
+    }
+
+    public String getAssemblyCountry() {
+        return assemblyCountry;
     }
 
     public String getBodyColor() {
@@ -63,9 +83,12 @@ public abstract class Transport {
             this.bodyColor = "белый";
         } else {
 
-
             this.bodyColor = bodyColor;
         }
+    }
+
+    public void setAssemblyCountry(String assemblyCountry) {
+        this.assemblyCountry = assemblyCountry;
     }
 
     public double getMaximumMovementSpeed() {
@@ -83,9 +106,6 @@ public abstract class Transport {
 
     }
 
-    public abstract void refill();
-
-    protected abstract String checkfuelTypeOrDefault(String fuelType);
 
     public abstract void pitStop();
 
@@ -97,16 +117,28 @@ public abstract class Transport {
 
     public abstract boolean service();
 
-    public void addDriver(Driver<?> driver) {//0.11
-        drivers.add(driver);
+    public void addDriver(Driver... driver) {//0.11
+        this.drivers.addAll(Arrays.asList(driver));
     }
 
-    public void addMechanic(Mechanic<?> mechanic) {
-        mechanics.add(mechanic);
+    public void addMechanic(Mechanic... mechanic) {
+        this.mechanics.addAll(Arrays.asList(mechanic));
     }
 
-    public void addSponsor(Sponsor sponsor) {
-        sponsors.add(sponsor);
+    public void addSponsor(Sponsor... sponsor) {
+        this.sponsors.addAll(Arrays.asList(sponsor));
+    }
+
+    public ArrayList<Driver> getDrivers() {
+        return drivers;
+    }
+
+    public ArrayList<Mechanic> getMechanics() {
+        return mechanics;
+    }
+
+    public ArrayList<Sponsor> getSponsors() {
+        return sponsors;
     }
 
     public abstract void repair();

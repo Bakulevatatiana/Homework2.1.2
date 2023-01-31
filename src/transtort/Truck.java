@@ -1,12 +1,15 @@
 package transtort;
 
-public abstract class Truck extends Transport {
+public abstract class Truck extends Transport implements Competing {
     private LoadCapacity LoadCapacity;
 
-    public Truck(String stamp,
-                 String model, double engineVolumeInLiters, LoadCapacity LoadCapacity) {
+    public Truck(String brand, String model, int productionYear,
+                 String assemblyCountry, String bodyColor,
+                 double maximumMovementSpeed, double engineVolumeInLiters, LoadCapacity LoadCapacity) {
 
-        super(stamp, model, engineVolumeInLiters);
+        super(  brand,  model,  productionYear,
+         assemblyCountry,  bodyColor,
+         maximumMovementSpeed,  engineVolumeInLiters);
         this.LoadCapacity = LoadCapacity;
     }
 
@@ -20,13 +23,13 @@ public abstract class Truck extends Transport {
 
     @Override
     public void startMovement() {
-        System.out.printf("Машина  %s %s начал движение", this.getStamp(), this.getModel());
+        System.out.printf("Машина  %s %s начал движение", this.getBrand(), this.getModel());
 
     }
 
     @Override
     public void stopMovement() {
-        System.out.printf("Машина %s %s закончил движение", this.getStamp(), this.getModel());
+        System.out.printf("Машина %s %s закончил движение", this.getBrand(), this.getModel());
     }
 
     @Override
@@ -62,7 +65,7 @@ public abstract class Truck extends Transport {
 
     @Override
     public void repair() {
-        System.out.println("Грузовик" + getStamp() + " " + getModel() + "починин!");
+        System.out.println("Грузовик" + getBrand() + " " + getModel() + "починин!");
     }
 }
 

@@ -1,12 +1,15 @@
 package driver;
 
-import transtort.Automobile;
+import transtort.Bus;
+import transtort.Car;
+import transtort.Transport;
 
-public class DriverC extends Driver<Automobile> {
-    public DriverC(String fullName, String category, int drivingExperience, Automobile car) {
-        super(fullName, category, drivingExperience, car);
+public class DriverC extends Driver<Bus> {
+    public DriverC(String fullName, String category, int drivingExperience, Bus bus) {
+        super(fullName, category, drivingExperience, bus);
     }
-    public void have(){
-        System.out.println( "Имеет категорию С (только грузовые машины)");
+
+    public void have() {
+        System.out.println("Имеет категорию С (только грузовые машины)");
     }
 }

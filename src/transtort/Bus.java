@@ -1,12 +1,13 @@
 package transtort;
 
-import java.util.concurrent.ThreadLocalRandom;
-
 public class Bus extends Transport implements Competing {
     private Capasity Capasity;
 
-    public Bus(String stamp, String model, int productionYear, String assemblyCountry, double maximumMovementSpeed, Capasity Capasity) {
-        super(stamp, model, maximumMovementSpeed);
+    public Bus(String brand, String model,double engineVolumeInLiters, int productionYear, String assemblyCountry,
+               String bodyColor, double maximumMovementSpeed, Capasity Capasity) {
+        super( brand, model,  productionYear,
+         assemblyCountry,  bodyColor,
+         maximumMovementSpeed,  engineVolumeInLiters);
         this.Capasity = Capasity;
     }
 
@@ -20,18 +21,18 @@ public class Bus extends Transport implements Competing {
 
     @Override
     public void startMovement() {
-        System.out.printf("Aвтобус  %s %s начал движение", this.getStamp(), this.getModel());
+        System.out.printf("Aвтобус  %s %s начал движение", this.getBrand(), this.getModel());
 
     }
 
     @Override
     public void stopMovement() {
-        System.out.printf("Aвтобус %s %s закончил движение", this.getStamp(), this.getModel());
+        System.out.printf("Aвтобус %s %s закончил движение", this.getBrand(), this.getModel());
     }
 
     @Override
     public void pitStop() {
-        System.out.printf("Aвтобус %s %s сделал остановку", this.getStamp(), this.getModel());
+        System.out.printf("Aвтобус %s %s сделал остановку", this.getBrand(), this.getModel());
     }
 
     @Override
@@ -60,7 +61,7 @@ public class Bus extends Transport implements Competing {
     }
 
     @Override
-    protected String checkfuelTypeOrDefault(String fuelType) {
+    public String checkFuelTypeOrDefault(String fuelType) {
         return null;
     }
 
@@ -69,8 +70,7 @@ public class Bus extends Transport implements Competing {
         if (Capasity == null) {
             System.out.println("Данных по авто недостаточно");
         } else {
-            String from = LoadCapacity.getFrom() == null ? "" : "от" + LoadCapacity.getFrom() + " ";
-            String to = LoadCapacity.getTo() == null ? "" : "до" + LoadCapacity.getTo();
+
             System.out.println("Вместимость автобуса от" + Capasity.getFrom() + " до " + Capasity.getTo());
         }
 
@@ -78,13 +78,13 @@ public class Bus extends Transport implements Competing {
 
     @Override
     public boolean service() {
-        System.out.println("Автобус" + getStamp() + "" + getModel() + "в диагностике не требуется");
+        System.out.println("Автобус" + getBrand() + "" + getModel() + "в диагностике не требуется");
         return true;
     }
 
     @Override
     public void repair() {
-        System.out.println("Автобус" + getStamp() + " " + getModel() + "починин");
+        System.out.println("Автобус" + getBrand() + " " + getModel() + "починин");
     }
 }
 

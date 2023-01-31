@@ -21,5 +21,9 @@ public class Sponsor {
         System.out.printf("Спронсор \"%s\" проспансировал заезд на %d%n", name, amount);
     }
 
-    ;
+    @Override
+    public String toString() {
+        return name + "сумма поддержки:" + amount;
+
+    }
 }
